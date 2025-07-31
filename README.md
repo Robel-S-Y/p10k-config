@@ -162,7 +162,7 @@ Ensure your `~/.zshrc` contains this line:
 nano ~/.zshrc
 
 ```
-Then add if not present the below:
+Add the belwo manually at the end of the file if it's missing:
 
 ```bash
 source ~/powerlevel10k/powerlevel10k.zsh-theme
@@ -172,8 +172,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 ```
-
-Add it manually at the end of the file if it's missing.
 
 ---
 
