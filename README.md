@@ -16,7 +16,7 @@ This repository contains my customized [Powerlevel10k](https://github.com/romkat
 
 Before using this config, install the following:
 
-### 1. Zsh
+### 1. Zsh(if not already)
 
 ```bash
 sudo apt update
@@ -35,7 +35,7 @@ Logout and log back in to apply.
 
 ### 2. Oh My Zsh
 
-Install [Oh My Zsh](https://ohmyz.sh/) with this command:
+Install [Oh My Zsh](https://ohmyz.sh/) with this command(Note: on doing so make sure to backup your zsh if you do have aliases or configuration setup):
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
