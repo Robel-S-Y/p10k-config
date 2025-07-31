@@ -34,7 +34,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     time                    # current time
-    context                 # user@hostname
+    my_context              # user@hostname
     dir                     # current directory
     vcs                     # git status
     # =========================[ Line #2 ]=========================
@@ -929,27 +929,48 @@
   # typeset -g POWERLEVEL9K_CPU_ARCH_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ##################################[ context: user@hostname ]##################################
-  # Context color when running with privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=red
-  # Context color in SSH without privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND=blue
-  # Default context color (no privileges, no SSH).
-  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=100
+ # Function to detect and show dynamic context
+function prompt_my_context() {
+  local icon=""
+  local color=100
+  local bold=false
 
-  # Context format when running with privileges: bold user@hostname.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%B%n@%m'
-  # Context format when in SSH without privileges: user@hostname.
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_TEMPLATE='%n@%m'
-  # Default context format (no privileges, no SSH): user@hostname.
-  typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%n   %m'
+  # Detect WSL
+  if grep -qEi "(Microsoft|WSL)" /proc/version &>/dev/null; then
+    icon=$'\uf17a'  #  Windows icon
+  elif [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    case "$ID" in
+      kali)    icon=$'  ' ;; # 
+      ubuntu)  icon=$'\uf31b ' ;; # 
+      debian)  icon=$'\uf30a ' ;; # 
+      arch)    icon=$'\uf303 ' ;; # 
+      *)       icon=$'\uf17c ' ;; #  (Linux generic)
+    esac
+  fi
 
-  # Don't show context unless running with privileges or in SSH.
-  # Tip: Remove the next line to always show context.
+  # Adjust styling based on privilege or SSH
+  if [[ $EUID -eq 0 ]]; then
+    color=red
+    bold=true
+  elif [[ -n "$SSH_CONNECTION" || -n "$SUDO_USER" ]]; then
+    color=blue
+  fi
 
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_CONTEXT_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # Custom prefix.
-  
+  local style=""
+  [[ $bold == true ]] && style="%B"
+  style+="${style}%F{$color}"
+
+  # Compose output: user  host
+  local user="%n"
+  local host="%m"
+  local output="${style}${user} ${icon} ${host}%f%b"
+
+  p10k segment -t "${output}"
+}
+
+# Style override (not necessary, handled in function)
+typeset -g POWERLEVEL9K_MY_CONTEXT_BACKGROUND=none 
 
   ###[ virtualenv: python virtual environment (https://docs.python.org/3/library/venv.html) ]###
   # Python virtual environment color.
@@ -1689,6 +1710,7 @@
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
 
+ 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See
   # https://github.com/romkatv/powerlevel10k#instant-prompt.
