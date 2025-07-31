@@ -159,7 +159,18 @@ cp p10k.zsh ~/.p10k.zsh
 Ensure your `~/.zshrc` contains this line:
 
 ```bash
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+nano ~/.zshrc
+
+```
+Then add if not present the below:
+
+```bash
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+```
+```bash
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 ```
 
 Add it manually at the end of the file if it's missing.
