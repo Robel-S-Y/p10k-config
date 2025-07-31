@@ -50,8 +50,62 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ```
 
 ---
+### 3. Nerd Fonts
 
-### 3. Powerlevel10k
+For icons and symbols to render correctly, install a [Nerd Font](https://www.nerdfonts.com/):
+
+#### 1. Hack Nerd Font
+
+```bash
+# Example: Hack Nerd Font
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
+unzip Hack.zip -d ~/.fonts
+fc-cache -fv
+```
+---
+#### 2. MesloLGS NF Font 
+
+```bash
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip
+unzip Meslo.zip -d ~/.fonts
+fc-cache -fv
+```
+
+#### 🛠️ Configure Your Terminal to Use the Font
+
+> Make sure to restart your terminal after installing the font.
+
+##### 🪟 Windows Terminal (WSL/Kali/Ubuntu)
+
+1. Open **Windows Terminal**.
+2. Click the dropdown ▾ → **Settings**.
+3. Select your shell (e.g., Kali Linux, Ubuntu).
+4. Under **Appearance**, set the **Font face** to:
+
+   * `MesloLGS NF`
+   * or `Hack Nerd Font`
+
+##### 🐧 GNOME Terminal (Linux Desktop)
+
+1. Open **GNOME Terminal**.
+2. Go to **Preferences** → select your profile.
+3. Under **Text**, uncheck **Use system font**.
+4. Click the font selector and choose:
+
+   * `MesloLGS NF Regular`
+   * or `Hack Nerd Font`
+
+##### 💡 Troubleshooting
+
+* Ensure fonts are in `~/.fonts`
+* Run `fc-cache -fv`
+* Restart the terminal or your system if fonts don't show
+
+
+
+---
+
+### 4. Powerlevel10k
 
 #### ✅ With or without Oh My Zsh
 
@@ -83,6 +137,7 @@ Clone the Powerlevel10k theme:
   ```
 
 ---
+
 
 ## 🚀 Installation (This Configuration)
 
@@ -140,20 +195,7 @@ source ~/.zshrc
 
 ---
 
-## 🤩 Optional: Nerd Fonts
 
-For icons and symbols to render correctly, install a [Nerd Font](https://www.nerdfonts.com/):
-
-```bash
-# Example: Hack Nerd Font
-wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
-unzip Hack.zip -d ~/.fonts
-fc-cache -fv
-```
-
-Then configure your terminal to use the new font.
-
----
 
 ## 🧠 Tip: Backup or Sync
 
