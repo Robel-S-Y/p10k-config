@@ -8,7 +8,7 @@ This repository contains my customized [Powerlevel10k](https://github.com/romkat
 
 ## 📸 Preview
 
-![Powerlevel10k Screenshot](https://raw.githubusercontent.com/romkatv/powerlevel10k-media/master/mode-classic.png)
+![Prompt Screenshot](screenshot.png)
 
 
 ---
