@@ -14,9 +14,9 @@ This repository contains my customized [Powerlevel10k](https://github.com/romkat
 
 ## 📦 Dependencies
 
-Before using this config, install the following:
+Before using this config, ensure the following are installed:
 
-### 1. Zsh(if not already)
+### 1. Zsh (if not already)
 
 ```bash
 sudo apt update
@@ -33,9 +33,17 @@ Logout and log back in to apply.
 
 ---
 
-### 2. Oh My Zsh
+### 2. (Optional) Oh My Zsh
 
-Install [Oh My Zsh](https://ohmyz.sh/) with this command(Note: on doing so make sure to backup your zsh if you do have aliases or configuration setup):
+**Oh My Zsh is not required** to use Powerlevel10k or this configuration. However, if you prefer a plugin framework, Oh My Zsh offers an easy way to manage themes and plugins.
+
+> ⚠️ If you already have a customized `.zshrc` (with aliases, plugins, or settings), installing Oh My Zsh will **overwrite** it. Make sure to back up your config before installing:
+
+```bash
+cp ~/.zshrc ~/.zshrc.backup
+```
+
+Install [Oh My Zsh](https://ohmyz.sh/) with:
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -45,18 +53,34 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ### 3. Powerlevel10k
 
-Clone the Powerlevel10k theme into the correct directory:
+#### ✅ With or without Oh My Zsh
 
-```bash
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
+Clone the Powerlevel10k theme:
 
-Then edit your `~/.zshrc` to use the theme:
+* **If using Oh My Zsh:**
 
-```bash
-ZSH_THEME="powerlevel10k/powerlevel10k"
-```
+  ```bash
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+    ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  ```
+
+  Then set this in `~/.zshrc`:
+
+  ```bash
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+  ```
+
+* **If NOT using Oh My Zsh:**
+
+  ```bash
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  ```
+
+  Then at the very top of your `~/.zshrc`, add:
+
+  ```bash
+  source ~/powerlevel10k/powerlevel10k.zsh-theme
+  ```
 
 ---
 
@@ -83,7 +107,7 @@ Ensure your `~/.zshrc` contains this line:
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 ```
 
-If not, add it manually at the end of the file.
+Add it manually at the end of the file if it's missing.
 
 ---
 
@@ -116,7 +140,7 @@ source ~/.zshrc
 
 ---
 
-## 🧩 Optional: Nerd Fonts
+## 🤩 Optional: Nerd Fonts
 
 For icons and symbols to render correctly, install a [Nerd Font](https://www.nerdfonts.com/):
 
